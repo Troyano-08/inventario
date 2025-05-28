@@ -52,13 +52,17 @@ class ClienteController extends Controller
         return view('clientes.delete', compact('cliente'));
     }
 
-    public function destroy(Request $request) {
+    public function destroy(Request $request)
+{
+    $cliente = Cliente::find($request->id);
 
-        $cliente = Cliente::find($request->id);
-
-        $cliente->delete();
-
-        return redirect()->route('cliente.index');
+    if (!$cliente) {
+        return redirect()->route('clientes.index')->with('error', 'Cliente no encontrado.');
     }
+
+    $cliente->delete();
+
+    return redirect()->route('clientes.index')->with('success', 'Cliente eliminado correctamente.');
+}
 }
 
