@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Producto;
 use App\Models\{Producto, Categoria};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProductoController extends Controller
 {
@@ -83,4 +84,10 @@ class ProductoController extends Controller
 
         return redirect()->route('productos.index')->with('success', 'Producto eliminado correctamente.');
     }
+    public function exportarPDF()
+{
+    $productos = Producto::all();
+    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('productos.pdf', compact('productos'));
+    return $pdf->download('productos.pdf');
+}
 }

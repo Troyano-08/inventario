@@ -102,9 +102,14 @@
 <div class="container mt-5">
   <h1><i class="bi bi-tags-fill me-2"></i> Categorías</h1>
 
-  <a href="{{ route('categorias.create') }}" class="btn btn-success mb-3">
+  <div class="mb-3 text-end">
+  <a href="{{ route('categorias.create') }}" class="btn btn-success btn-sm me-2">
     <i class="bi bi-plus-circle-fill me-1"></i> Agregar Categoría
   </a>
+  <a href="{{ route('categorias.exportarPDF') }}" class="btn btn-danger btn-sm">
+    <i class="bi bi-file-earmark-pdf-fill me-1"></i> Exportar PDF
+  </a>
+</div>
 
   <div class="table-responsive">
     <table class="table table-bordered table-hover shadow-sm rounded">

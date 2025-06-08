@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Categoria;
 use App\Models\Categoria;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CategoriaController extends Controller
 {
@@ -58,4 +59,10 @@ class CategoriaController extends Controller
 
         return redirect()->route('categorias.index');
     }
+    public function exportarPDF()
+{
+    $categorias = Categoria::all();
+    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('categorias.pdf', compact('categorias'));
+    return $pdf->download('categorias.pdf');
+}
 }

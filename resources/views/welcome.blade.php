@@ -3,33 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inicio - Sistema de Inventario</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <title>Bienvenido - Sistema de Inventario</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
     :root {
       --bg-color: #0f1115;
       --card-color: #1a1d23;
       --text-color: #f1f1f1;
       --green: #4ade80;
-      --blue: #60a5fa;
-      --teal: #2dd4bf;
-      --soft: #d1d5db;
-      --brand-color: #e2e8f0;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      --borde: #2c3038;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
+      font-family: 'Segoe UI', sans-serif;
       overflow-x: hidden;
       position: relative;
-      z-index: 1;
     }
 
     canvas {
@@ -41,213 +32,185 @@
       height: 100%;
     }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: rgba(26, 29, 35, 0.85);
-      backdrop-filter: blur(6px);
-      z-index: 2;
+    .container-welcome {
       position: relative;
-    }
-
-    nav .logo {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--brand-color);
-    }
-
-    nav .nav-links a {
-      color: var(--soft);
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: 500;
-    }
-
-    .hero {
+      z-index: 2;
+      max-width: 1400px;
+      margin: 80px auto;
       text-align: center;
-      padding: 3rem 1rem 2rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      color: var(--soft);
-    }
-
-    .cards {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
       padding: 2rem;
-      position: relative;
-      z-index: 2;
     }
 
-    .card {
-      background-color: var(--card-color);
-      border-radius: 12px;
-      width: 280px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card i {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
+    h1 {
+      font-weight: bold;
+      text-transform: uppercase;
       color: var(--text-color);
     }
 
-    .card p {
-      color: var(--soft);
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
+    .subtitle {
+      color: #aaa;
+      margin-bottom: 2.5rem;
     }
 
-    .card a {
-      display: inline-block;
-      padding: 0.5rem 1.2rem;
-      border-radius: 8px;
+    .row-custom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .card-custom {
+      background-color: var(--card-color);
+      border: 1px solid var(--borde);
+      border-radius: 12px;
+      padding: 2rem;
+      flex: 1;
+      min-width: 300px;
+      max-width: 320px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .card-custom:hover {
+      transform: scale(1.05);
+    }
+
+    .card-custom i {
+      font-size: 2.2rem;
+      color: var(--green);
+    }
+
+    .card-custom h5 {
+      margin-top: 1rem;
       font-weight: bold;
-      text-decoration: none;
-      font-size: 0.9rem;
+      color: #fff;
     }
 
-    .green-btn {
+    .card-custom p {
+      color: #ccc;
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .btn-acceder {
       background-color: var(--green);
-      color: #0f1115;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 0.5rem 1.2rem;
     }
 
-    .blue-btn {
-      background-color: var(--blue);
-      color: #0f1115;
+    .btn-acceder:hover {
+      background-color: #34d399;
+      color: #000;
     }
 
-    .teal-btn {
-      background-color: var(--teal);
-      color: #0f1115;
+    .logout-btn {
+      margin-top: 4rem;
     }
 
-    @media (max-width: 768px) {
-      .cards {
-        flex-direction: column;
-        align-items: center;
+    @media (max-width: 1400px) {
+      .row-custom {
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Fondo de estrellas fugaces -->
-  <canvas id="stars"></canvas>
+<canvas id="stars"></canvas>
 
-  <!-- Navbar -->
-  <nav>
-    <div class="logo"><i class="fas fa-warehouse"></i> Sistema de Inventario</div>
-    <div class="nav-links">
-      <a href="#">Contacto</a>
-    </div>
-  </nav>
+<div class="container-welcome">
+  <h1>GESTIONA CON EXCELENCIA</h1>
+  <p class="subtitle">Soluciones eficientes para tu inventario</p>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1>GESTIONA CON EXCELENCIA</h1>
-    <p>Soluciones eficientes para tu inventario</p>
-  </section>
-
-  <!-- Cards -->
-  <section class="cards">
-    <div class="card">
-      <i class="fas fa-users" style="color: var(--green);"></i>
-      <h3>Clientes</h3>
+  <div class="row-custom">
+    <div class="card-custom">
+      <i class="fas fa-users"></i>
+      <h5>Clientes</h5>
       <p>Administra la información de tus clientes</p>
-      <a href="{{ route('clientes.index') }}" class="green-btn">Ver clientes</a>
+      <a href="{{ route('clientes.index') }}" class="btn btn-acceder">Ver clientes</a>
     </div>
-    <div class="card">
-      <i class="fas fa-cube" style="color: var(--blue);"></i>
-      <h3>Productos</h3>
+
+    <div class="card-custom">
+      <i class="fas fa-box-open"></i>
+      <h5>Productos</h5>
       <p>Supervisa y actualiza el stock detallado</p>
-      <a href="{{ route('productos.index') }}" class="blue-btn">Ver productos</a>
+      <a href="{{ route('productos.index') }}" class="btn btn-acceder">Ver productos</a>
     </div>
-    <div class="card">
-      <i class="fas fa-tags" style="color: var(--teal);"></i>
-      <h3>Categorías</h3>
+
+    <div class="card-custom">
+      <i class="fas fa-tags"></i>
+      <h5>Categorías</h5>
       <p>Ordena los productos en categorías claras</p>
-      <a href="{{ route('categorias.index') }}" class="teal-btn">Ver categorías</a>
+      <a href="{{ route('categorias.index') }}" class="btn btn-acceder">Ver categorías</a>
     </div>
-  </section>
 
-  <!-- Script de estrellas fugaces -->
-  <script>
-    const canvas = document.getElementById("stars");
-    const ctx = canvas.getContext("2d");
+    <div class="card-custom">
+      <i class="fas fa-diagram-project"></i>
+      <h5>Proyectos</h5>
+      <p>Gestiona y consulta los proyectos registrados</p>
+      <a href="{{ route('proyectos.index') }}" class="btn btn-acceder">Ver proyectos</a>
+    </div>
+  </div>
 
-    let stars = [];
+  <form method="POST" action="{{ route('logout') }}" class="logout-btn">
+    @csrf
+    <button type="submit" class="btn btn-danger">
+      <i class="fas fa-sign-out-alt me-1"></i> Cerrar sesión
+    </button>
+  </form>
+</div>
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
+<script>
+  const canvas = document.getElementById("stars");
+  const ctx = canvas.getContext("2d");
 
-    function createStar() {
-      return {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        length: Math.random() * 80 + 10,
-        speed: Math.random() * 4 + 1,
-        alpha: Math.random() * 0.6 + 0.2
-      };
-    }
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
 
-    function drawStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach((star, index) => {
-        ctx.beginPath();
-        const gradient = ctx.createLinearGradient(star.x, star.y, star.x - star.length, star.y + star.length);
-        gradient.addColorStop(0, "rgba(255,255,255," + star.alpha + ")");
-        gradient.addColorStop(1, "rgba(255,255,255,0)");
-        ctx.strokeStyle = gradient;
-        ctx.moveTo(star.x, star.y);
-        ctx.lineTo(star.x - star.length, star.y + star.length);
-        ctx.stroke();
+  function createStar() {
+    return {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      length: Math.random() * 80 + 10,
+      speed: Math.random() * 3 + 1,
+      alpha: Math.random() * 0.5 + 0.2
+    };
+  }
 
-        star.x -= star.speed;
-        star.y += star.speed;
+  let stars = [];
 
-        if (star.x < -star.length || star.y > canvas.height + star.length) {
-          stars[index] = createStar();
-        }
-      });
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach((star, i) => {
+      ctx.beginPath();
+      const gradient = ctx.createLinearGradient(star.x, star.y, star.x - star.length, star.y + star.length);
+      gradient.addColorStop(0, `rgba(255,255,255,${star.alpha})`);
+      gradient.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.strokeStyle = gradient;
+      ctx.moveTo(star.x, star.y);
+      ctx.lineTo(star.x - star.length, star.y + star.length);
+      ctx.stroke();
 
-      requestAnimationFrame(drawStars);
-    }
+      star.x -= star.speed;
+      star.y += star.speed;
 
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-    stars = Array(60).fill().map(createStar);
-    drawStars();
-  </script>
+      if (star.x < -star.length || star.y > canvas.height + star.length) {
+        stars[i] = createStar();
+      }
+    });
+
+    requestAnimationFrame(drawStars);
+  }
+
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+  stars = Array(60).fill().map(createStar);
+  drawStars();
+</script>
 
 </body>
 </html>

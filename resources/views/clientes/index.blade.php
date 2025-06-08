@@ -111,6 +111,9 @@
     <a href="{{ route('clientes.create') }}" class="btn btn-success btn-sm">
       <i class="bi bi-plus-circle-fill me-1"></i> Agregar Cliente
     </a>
+    <a href="{{ route('clientes.exportarPDF') }}" class="btn btn-danger btn-sm ms-2">
+      <i class="fas fa-file-pdf"></i> Exportar PDF
+    </a>
   </div>
 
   <div class="table-responsive rounded shadow-sm">

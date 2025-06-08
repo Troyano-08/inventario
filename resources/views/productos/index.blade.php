@@ -108,11 +108,16 @@
   <i class="bi bi-box-seam me-2"></i> Productos
 </h1>
 
+
   <div class="mb-3 text-end">
-    <a href="{{ route('productos.create') }}" class="btn btn-success btn-sm">
-      <i class="bi bi-plus-circle-fill me-1"></i> Agregar Producto
-    </a>
-  </div>
+  <a href="{{ route('productos.create') }}" class="btn btn-success btn-sm me-2">
+    <i class="bi bi-plus-circle-fill me-1"></i> Agregar Producto
+  </a>
+  <a href="{{ route('productos.exportarPDF') }}" class="btn btn-danger btn-sm">
+    <i class="bi bi-file-earmark-pdf-fill me-1"></i> Exportar PDF
+  </a>
+</div>
+
 
   <div class="table-responsive rounded shadow-sm">
     <table class="table table-hover table-bordered align-middle">
@@ -141,10 +146,10 @@
               </a>
             </td>
             <td class="text-center">
-              <a href="{{ route('productos.delete', $producto->id) }}" class="btn btn-danger btn-sm"
-                 onclick="return confirm('¿Deseas eliminar este producto?')">
-                <i class="bi bi-trash3-fill"></i>
-              </a>
+              <a href="{{ route('productos.delete', $producto->id) }}" class="btn btn-danger">
+  <i class="bi bi-trash3-fill"></i>
+</a>
+
             </td>
           </tr>
         @endforeach
@@ -153,6 +158,7 @@
     @include('components.boton-inicio')
   </div>
 </div>
+
 
 <!-- Script estrellas fugaces -->
 <script>
